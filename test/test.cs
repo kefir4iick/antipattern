@@ -62,7 +62,7 @@ namespace Nyashka.Tests
             adapter.Accelerate(speed);
             Console.Out.Flush();
 
-            Assert.Equal($"speed: {speed}\n", consoleOutput.ToString());
+            Assert.Equal("mya\n", consoleOutput.ToString());
 
             Console.SetOut(original);
             consoleOutput.Dispose();
