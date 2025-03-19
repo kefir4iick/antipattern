@@ -130,4 +130,88 @@ namespace Nyashka.Tests
             Console.SetOut(original);
         }
     } 
+
+
+    [Collection("NonParallelTests")]
+    public class GodVehicleTests
+    {
+        [Fact]
+        public void Start()
+        {
+            var car = new Car();
+            var godVehicle = new GodVehicle(car);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
+
+            godVehicle.Start();
+
+            var output = consoleOutput.ToString().Trim();
+            Assert.Contains("turn on", output);
+            Assert.Contains("god start", output);
+        }
+
+        [Fact]
+        public void Stop()
+        {
+            var car = new Car();
+            var godVehicle = new GodVehicle(car);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
+
+            godVehicle.Stop();
+
+            var output = consoleOutput.ToString().Trim();
+            Assert.Contains("turn off", output);
+            Assert.Contains("god stop", output);
+        }
+
+        [Fact]
+        public void Accelerate200()
+        {
+            var car = new Car();
+            var godVehicle = new GodVehicle(car);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
+
+            godVehicle.Accelerate(200);
+
+            var output = consoleOutput.ToString().Trim();
+            Assert.Contains("speed: 200", output);
+            Assert.Contains("god acceleration", output);
+        }
+
+        [Fact]
+        public void Acceleratenot200()
+        {
+            var car = new Car();
+            var godVehicle = new GodVehicle(car);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
+
+            godVehicle.Accelerate(100);
+
+            var output = consoleOutput.ToString().Trim();
+            Assert.Contains("mya", output);
+            Assert.Contains("god acceleration", output);
+        }
+
+        [Fact]
+        public void All()
+        {
+            var car = new Car();
+            var godVehicle = new GodVehicle(car);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
+
+            godVehicle.all();
+
+            var output = consoleOutput.ToString().Trim();
+            Assert.Contains("turn on", output);
+            Assert.Contains("god start", output);
+            Assert.Contains("speed: 200", output);
+            Assert.Contains("god acceleration", output);
+            Assert.Contains("turn off", output);
+            Assert.Contains("god stop", output);
+        }
+    }
 }
